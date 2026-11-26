@@ -1,0 +1,56 @@
+.case-disclosure {
+  position: relative;
+  z-index: 5;
+  background: #252138;
+  color: #fffafc;
+  border-bottom: 1px solid #5c536f;
+  font: 500 .9rem/1.55 "Microsoft JhengHei", system-ui, sans-serif;
+}
+.case-disclosure-inner {
+  width: min(100% - 2rem, 1120px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: .25rem 1.4rem;
+  flex-wrap: wrap;
+  padding-block: .35rem;
+}
+.case-disclosure a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #fffafc;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.case-disclosure strong { color: #ffe1a8; }
+.case-disclosure p { margin: 0; }
+.case-disclosure a:focus-visible { outline: 2px solid #ffe1a8; outline-offset: 3px; }
+.case-ruler {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+.case-ruler--viewport {
+  position: fixed;
+  z-index: 3;
+}
+.case-ruler .ruler-line { background: rgb(36 47 39 / 42%); }
+.portrait .case-ruler .ruler-line {
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 0 0 1px rgb(32 39 37 / 26%);
+}
+.bg-balls .ball:nth-child(3n+1) { animation-delay: -12s; }
+.bg-balls .ball:nth-child(3n+2) { animation-delay: -18s; }
+.bg-balls .ball:nth-child(3n) { animation-delay: -23s; }
+@media (max-width: 680px) {
+  .case-disclosure-inner { display: block; padding-bottom: .8rem; }
+  .navbar { flex-wrap: wrap; }
+  .split .left { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
