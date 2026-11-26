@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="影視、後製合成、網頁與互動作品。">
+  <meta name="theme-color" content="#f5f3ee">
+  <title>個人作品集｜影視、合成與互動</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="portfolio.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#top"><span class="mark" aria-hidden="true"></span> 個人作品集</a>
+      <nav aria-label="主選單">
+        <a href="#works">作品</a>
+        <a href="#about">關於</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="portfolio-title">
+      <div class="hero-copy">
+        <p class="kicker"><span></span> PORTFOLIO</p>
+        <h1 id="portfolio-title">個人作品集</h1>
+        <p class="hero-fields">影視 · 後製合成 · 網頁與互動</p>
+        <a class="primary" href="#works">瀏覽作品</a>
+      </div>
+      <a class="hero-film" href="media/dakin.mp4" data-video="dakin" data-title="大金孫" data-duration="7:30" aria-label="播放《大金孫》">
+        <div class="hero-visual">
+          <img src="media/dakin.webp" alt="《大金孫》劇照，三人坐在桌旁，其中一人抱著吉他" width="1200" height="750" fetchpriority="high">
+          <span class="play" aria-hidden="true"></span>
+        </div>
+        <div class="hero-caption"><span>大金孫</span><span>影視作品 <span class="dot">·</span> 7:30</span></div>
+      </a>
+    </section>
+
+    <section class="work-section" id="works" aria-labelledby="work-title">
+      <div class="section-head">
+        <h2 id="work-title">作品索引</h2>
+        <div class="filters" role="group" aria-label="篩選作品" hidden>
+          <button type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button type="button" data-filter="film" aria-pressed="false">影視</button>
+          <button type="button" data-filter="post" aria-pressed="false">後製合成</button>
+          <button type="button" data-filter="web" aria-pressed="false">網頁與互動</button>
+        </div>
+        <p class="visually-hidden" id="filter-status" aria-live="polite"></p>
+      </div>
+
+      <div class="grid" id="work-grid">
+        <article class="card card--feature" data-category="web">
+          <a class="card-link" href="https://forgotten-blade-boss-prototype.danny20041030.chatgpt.site/v5.5/" target="_blank" rel="noopener">
+            <div class="art art--game">
+              <img src="media/blade.webp" alt="" width="1000" height="550" loading="lazy">
+              <div class="game-lettering"><span>FORGOTTEN BLADE</span><strong>遺忘之刃</strong><span>殘響之詩</span></div>
+            </div>
+            <div class="card-body">
+              <p class="meta">遊戲原型 <span class="dot">·</span> V5.5</p>
+              <h3>遺忘之刃</h3>
+              <p class="description">像素動作遊戲，透過 Boss 戰與記憶片段探索失憶騎士的過去。</p>
+              <span class="action">試玩遊戲<span class="visually-hidden">（另開分頁）</span></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="card card--feature" data-category="web">
+          <a class="card-link" href="https://between-isles.github.io/fudao-meeting/website/" target="_blank" rel="noopener">
+            <div class="art art--isles">
+              <img class="island island--left" src="media/island.svg" alt="" width="270" height="142" loading="lazy">
+              <img class="island island--right" src="media/island.svg" alt="" width="270" height="142" loading="lazy">
+              <img class="isles-logo" src="media/isles-logo.webp" alt="Between Isles 標誌" width="740" height="480" loading="lazy">
+            </div>
+            <div class="card-body">
+              <p class="meta">畢業製作 <span class="dot">·</span> 團隊專案</p>
+              <h3>浮島之間</h3>
+              <p class="description">參與 115 級畢製形象組，負責網站、主視覺動畫及展場視覺等工作。</p>
+              <span class="action">瀏覽畢製網站<span class="visually-hidden">（另開分頁）</span></span>
+            </div>
+          </a>
+        </article>
+
+        <article class="card" data-category="film">
+          <a class="card-link" href="media/dakin.mp4" data-video="dakin" data-title="大金孫" data-duration="7:30">
+            <div class="art"><img src="media/dakin.webp" alt="" width="1200" height="750" loading="lazy"><span class="duration">7:30</span></div>
+            <div class="card-body"><p class="meta">影視作品</p><h3>大金孫</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="film">
+          <a class="card-link" href="media/swan.mp4" data-video="swan" data-title="天鵝" data-duration="2:43">
+            <div class="art"><img src="media/swan.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">2:43</span></div>
+            <div class="card-body"><p class="meta">影視作品</p><h3>天鵝</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="web">
+          <a class="card-link" href="case/index.html">
+            <div class="art art--client">
+              <div class="mock-browser" aria-hidden="true">
+                <div class="mock-bar"><i></i><i></i><i></i></div>
+                <div class="mock-page"><div class="mock-type"><b>作品集網站</b><span></span><span></span><i></i></div><img src="case/images/hero.jpg" alt="" width="320" height="250" loading="lazy"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="meta">網頁設計 <span class="dot">·</span> 受託製作</p>
+              <h3>個人作品集網站</h3>
+              <p class="description">為他人製作的網站。示範頁的個人簡介與插畫屬於委託方。</p>
+              <span class="action">查看網站示範</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/atlantis.mp4" data-video="atlantis" data-title="ATLANTIS" data-duration="1:52">
+            <div class="art"><img src="media/atlantis.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">1:52</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>ATLANTIS</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/bonnie.mp4" data-video="bonnie" data-title="邦妮麵包坊" data-duration="2:36">
+            <div class="art"><img src="media/bonnie.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">2:36</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>邦妮麵包坊</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/metaverse.mp4" data-video="metaverse" data-title="元宇宙" data-duration="1:27">
+            <div class="art"><img src="media/metaverse.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">1:27</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>元宇宙</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/literature.mp4" data-video="literature" data-title="台灣文學" data-duration="0:30">
+            <div class="art art--wide"><img src="media/literature.webp" alt="" width="1344" height="280" loading="lazy"><span class="duration">0:30</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>台灣文學</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/ocean.mp4" data-video="ocean" data-title="海洋特效" data-duration="0:09">
+            <div class="art"><img src="media/ocean.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">0:09</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>海洋特效</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/vfx.mp4" data-video="vfx" data-title="特效" data-duration="0:10">
+            <div class="art"><img src="media/vfx.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">0:10</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>特效</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/pv.mp4" data-video="pv" data-title="PV 練習" data-duration="0:16">
+            <div class="art"><img src="media/pv.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">0:16</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>PV 練習</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+
+        <article class="card" data-category="post">
+          <a class="card-link" href="media/practice.mp4" data-video="practice" data-title="練習" data-duration="0:18">
+            <div class="art"><img src="media/practice.webp" alt="" width="960" height="540" loading="lazy"><span class="duration">0:18</span></div>
+            <div class="card-body"><p class="meta">後製合成</p><h3>練習</h3><span class="action">播放影片</span></div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div><p class="kicker">ABOUT</p><h2 id="about-title">關於我</h2></div>
+      <div class="about-copy">
+        <p>我就讀台南應用科技大學多媒體動畫系，作品包含影視、後製合成、網頁設計與遊戲原型。</p>
+        <p>在《浮島之間》畢製形象組，我參與主視覺動畫、網站、Discord 機器人和展場視覺。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap"><span>個人作品集</span><a href="#top">回到頂端</a></footer>
+
+  <dialog class="player" aria-labelledby="player-title">
+    <div class="player-head">
+      <div><h2 id="player-title">播放影片</h2><p id="player-duration"></p></div>
+      <button type="button" class="close" autofocus aria-label="關閉播放器">×</button>
+    </div>
+    <video id="player-video" preload="none" playsinline controls aria-labelledby="player-title"></video>
+    <div class="player-foot">
+      <p id="player-error" role="status" hidden>影片無法在這裡播放，可單獨開啟影片。</p>
+      <a id="player-link" href="media/dakin.mp4" target="_blank" rel="noopener">單獨開啟影片</a>
+    </div>
+  </dialog>
+</body>
+</html>
