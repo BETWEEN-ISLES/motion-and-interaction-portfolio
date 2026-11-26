@@ -1,1 +1,684 @@
+/* =========================================================
+   極簡高級感作品集（Wix 風格）
+   ✅背景球球緩慢掉落 + ✅尺規十字線（平行/垂直）
+========================================================= */
+
+:root{
+  --bg: #fbfbf8;
+  --ink: #101114;
+  --muted: rgba(16,17,20,.68);
+  --line: rgba(16,17,20,.12);
+  --panel: #95a79d;
+
+  --serif: ui-serif, "Times New Roman", "Noto Serif TC", serif;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* =========================
+   ✅背景球球（可見、但不吵）
+========================= */
+.bg-balls{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;      /* ✅最底層 */
+  opacity: .90;
+}
+
+.ball{
+  position: absolute;
+  top: -20%;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255,255,255,.70),
+    rgba(200,225,210,.28) 55%,
+    rgba(0,0,0,0) 75%
+  );
+
+  filter: blur(.2px);
+  mix-blend-mode: multiply;
+  animation: fall linear infinite;
+}
+
+@keyframes fall{
+  0%{ transform: translateY(0) translateX(0); opacity:0; }
+  10%{ opacity:.65; }
+  50%{ transform: translateY(55vh) translateX(16px); }
+  100%{ transform: translateY(120vh) translateX(-16px); opacity:0; }
+}
+
+.bg-balls .ball:nth-child(1){ left:6%;  width:130px; height:130px; animation-duration:42s; }
+.bg-balls .ball:nth-child(2){ left:16%; width:70px;  height:70px;  animation-duration:30s; }
+.bg-balls .ball:nth-child(3){ left:28%; width:95px;  height:95px;  animation-duration:36s; }
+.bg-balls .ball:nth-child(4){ left:40%; width:60px;  height:60px;  animation-duration:28s; }
+.bg-balls .ball:nth-child(5){ left:52%; width:150px; height:150px; animation-duration:46s; }
+.bg-balls .ball:nth-child(6){ left:64%; width:80px;  height:80px;  animation-duration:34s; }
+.bg-balls .ball:nth-child(7){ left:74%; width:110px; height:110px; animation-duration:40s; }
+.bg-balls .ball:nth-child(8){ left:86%; width:65px;  height:65px;  animation-duration:32s; }
+.bg-balls .ball:nth-child(9){ left:94%; width:100px; height:100px; animation-duration:44s; }
+
+@media (prefers-reduced-motion: reduce){
+  .ball{ animation:none; opacity:.10; }
+}
+
+/* ✅內容層（在球球上面） */
+header, main, footer{
+  position: relative;
+  z-index: 2;
+}
+
+.container{
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+/* =========================
+   Header
+========================= */
+header{
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 235, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(16,17,20,.08);
+  z-index: 10;
+}
+
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 16px 0;
+  gap: 16px;
+}
+
+.brand{
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: .2px;
+  text-decoration: none;
+  color: rgba(16,17,20,.92);
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap: 18px;
+  padding:0;
+  margin:0;
+  flex-wrap: wrap;
+}
+
+nav a{
+  position: relative;
+  color: rgba(16,17,20,.72);
+  text-decoration:none;
+  font-size: 14px;
+  letter-spacing: .25px;
+  padding: 4px 2px;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background: rgba(16,17,20,.85);
+  transition: width .22s ease;
+}
+
+nav a:hover::after{ width:100%; }
+nav a[aria-current="page"]::after{ width:100%; }
+nav a[aria-current="page"]{ color: rgba(16,17,20,.95); }
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 16px;
+  border-radius: 2px;
+  background: rgba(16,17,20,.95);
+  color:#fff;
+  text-decoration:none;
+  font-size: 13px;
+  letter-spacing: .35px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0,0,0,.14);
+}
+
+/* =========================
+   Main layout
+========================= */
+main{ padding: 28px 0 60px; }
+
+.split{
+  display:flex;
+  min-height: calc(100vh - 74px);
+  border-left: 1px solid rgba(16,17,20,.06);
+  border-right: 1px solid rgba(16,17,20,.06);
+}
+
+.left{
+  flex: 1.1;
+  padding: 58px 52px;
+  background: rgba(251,251,248,.90);
+}
+
+.right{
+  flex: .9;
+  padding: 34px;
+  background: rgba(149,167,157,.90);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-title{
+  font-family: var(--serif);
+  font-size: clamp(46px, 5.2vw, 86px);
+  line-height: 1.02;
+  margin: 0 0 10px;
+}
+
+.hero-sub{
+  font-size: 18px;
+  color: rgba(16,17,20,.70);
+  margin: 0 0 30px;
+}
+
+/* 資訊對齊 */
+.info{
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+.info .row{
+  display:grid;
+  grid-template-columns: 90px 1fr;
+  align-items: baseline;
+  column-gap: 14px;
+}
+.info dt{
+  font-weight: 700;
+  color: rgba(16,17,20,.92);
+}
+.info dd{
+  margin: 0;
+  color: rgba(16,17,20,.76);
+}
+
+/* Links */
+.links{
+  margin-top: 14px;
+  display:flex;
+  gap: 14px;
+  flex-wrap:wrap;
+}
+.link{
+  color: rgba(16,17,20,.88);
+  text-decoration:none;
+  border-bottom: 1px solid rgba(16,17,20,.25);
+  padding-bottom: 2px;
+  transition: border-color .18s ease, opacity .18s ease;
+  font-size: 14px;
+}
+.link:hover{
+  border-color: rgba(16,17,20,.75);
+  opacity: .92;
+}
+
+/* Section */
+.section{
+  padding-top: 40px;
+  margin-top: 32px;
+  border-top: 1px solid rgba(16,17,20,.10);
+}
+
+.h2{
+  font-family: var(--serif);
+  font-size: 34px;
+  margin: 0 0 10px;
+  line-height: 1.1;
+}
+.lead{
+  color: var(--muted);
+  margin: 0;
+  max-width: 54ch;
+}
+
+/* Portrait */
+.portrait{
+  width: min(440px, 92%);
+  aspect-ratio: 1 / 1.05;
+  background: rgba(255,255,255,.20);
+  border: 1px solid rgba(255,255,255,.40);
+  border-radius: 2px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.12);
+  overflow:hidden;
+}
+/* 讓人物浮出來 */
+.portrait{
+  overflow: visible; /* ✅一定要 */
+}
+
+.portrait img{
+  transform: translateY(-18px) scale(1.02);
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.25));
+  transition: transform .35s ease, filter .35s ease;
+}
+
+/* 滑鼠移上去更立體（可選） */
+.portrait:hover img{
+  transform: translateY(-26px) scale(1.04);
+  filter: drop-shadow(0 26px 40px rgba(0,0,0,.35));
+}
+
+
+/* Footer */
+footer{
+  border-top: 1px solid rgba(16,17,20,.08);
+  padding: 18px 0 30px;
+  color: rgba(16,17,20,.56);
+  background: rgba(251,251,248,.90);
+}
+
+/* RWD */
+@media (max-width: 800px){
+  .split{ flex-direction: column; min-height: auto; }
+  .left{ padding: 40px 22px; }
+  .right{ padding: 28px 22px; }
+}
+@media (max-width: 400px){
+  .navbar{ padding: 12px 0; gap: 10px; }
+  nav ul{ gap: 12px; }
+  .btn{ padding: 9px 12px; font-size: 12px; }
+  .hero-sub{ font-size: 16px; margin-bottom: 22px; }
+  .h2{ font-size: 30px; }
+  .info .row{ grid-template-columns: 78px 1fr; }
+}
+
+/* =========================================================
+   ✅尺規標線互動（平行 / 垂直）
+========================================================= */
+.ruler-target{
+  position: relative;
+  overflow: hidden;
+}
+.ruler-line{
+  position: absolute;
+  pointer-events: none;
+  background: rgba(16,17,20,.35);
+  transition: opacity .15s ease;
+  opacity: 0;
+}
+.ruler-line.horizontal{
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+.ruler-line.vertical{
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+/* 右側圖片用白線 */
+.right .ruler-line{
+  background: rgba(255,255,255,.55);
+}
+
+/* ===============================
+   修正：右側不要蓋住左側
+=============================== */
+
+/* 1️⃣ split 要有定位，才能控制左右層級 */
+.split{
+  position: relative;
+}
+
+/* 2️⃣ 左邊內容永遠在上面 */
+.left{
+  position: relative;
+  z-index: 3;
+}
+
+/* 3️⃣ 右邊背景退後一層 */
+.right{
+  position: relative;
+  z-index: 1;
+}
+/* ✅修正：避免右欄把左欄擠爆 */
+.split{
+  display:flex;
+  gap: 0;
+}
+
+.left{
+  flex: 1.1;
+  min-width: 420px;   /* ✅左欄保底寬度 */
+}
+
+.right{
+  flex: .9;
+  max-width: 560px;   /* ✅右欄不要無限變寬 */
+  width: 100%;
+}
+
+/* ✅螢幕稍窄就先改成上下排（不要等到 800） */
+@media (max-width: 980px){
+  .split{ flex-direction: column; }
+  .right{ max-width: none; }
+}
+/* ===============================
+   修正：圖片一定顯示在最上層
+=============================== */
+
+.portrait{
+  position: relative;
+  z-index: 3;
+  overflow: visible;
+}
+
+.portrait img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 4; /* ✅比背景高 */
+}
+/* ===============================
+   Works 頁：作品圖片尺寸控制
+=============================== */
+
+/* 作品列表容器 */
+.works-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+/* 每一件作品 */
+.work-item{
+  background: #fff;
+  padding: 16px;
+  border-radius: 2px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.work-item:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 22px 40px rgba(0,0,0,.14);
+}
+
+/* ✅ 關鍵：圖片不再爆版 */
+.work-item img{
+  width: 100%;
+  max-height: 420px;        /* ✅限制高度 */
+  object-fit: contain;     /* ✅完整顯示，不裁切 */
+  background: #f4f4f2;
+  display: block;
+  border-radius: 2px;
+}
+
+/* 作品標題 */
+.work-title{
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.work-item{
+  background: #e7ebe7;
+  padding: 28px 20px 20px;
+}
+
+.work-item img{
+  transform: translateY(-18px);
+  box-shadow: 0 20px 36px rgba(0,0,0,.25);
+}
+/* =========================================================
+   ✅新增：背景不規則圓形（接近才浮現）
+   使用方式：works.html 加上 .bg-orbs + 多個 .orb
+========================================================= */
+
+.bg-orbs{
+  position: fixed;
+  inset: 0;
+  z-index: 0;                 /* ✅在最底層 */
+  pointer-events: none;       /* ✅不擋點擊 */
+  opacity: 0;                 /* ✅平常完全隱藏 */
+  transition: opacity .45s ease;
+  filter: blur(.2px);
+}
+
+/* ✅觸發：滑鼠進到畫面就浮現（接近感） */
+body:hover .bg-orbs{
+  opacity: 1;
+}
+
+/* ✅如果你想「更接近才出現」→ 改成只在作品區域 hover 才出現
+   (把上面 body:hover 刪掉，改成下面這行)
+   main:hover ~ .bg-orbs 這種 selector 不好用，建議用下方方案：把 bg-orbs 放在 main 前面，
+   然後用 main:hover + .bg-orbs 也不行（兄弟選擇器）。所以最穩還是 body:hover。
+*/
+
+/* 圓形基本樣式 */
+.orb{
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+
+  /* ✅透明的霧面漸層球 */
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255,255,255,.55),
+    rgba(149,167,157,.20) 55%,
+    rgba(0,0,0,0) 72%
+  );
+
+  mix-blend-mode: multiply;
+  opacity: 0;                 /* ✅每顆球預設也透明 */
+  transform: translateY(12px) scale(.98);
+  transition:
+    opacity .60s ease,
+    transform .90s ease;
+}
+
+/* ✅浮現時每顆球慢慢出來 */
+body:hover .bg-orbs .orb{
+  opacity: .9;
+  transform: translateY(0) scale(1);
+}
+
+/* 不規則排列（你可以自行調整數量與位置） */
+.bg-orbs .orb:nth-child(1){ left: 8%;  top: 18%; width:180px; height:180px; }
+.bg-orbs .orb:nth-child(2){ left: 22%; top: 64%; width:120px; height:120px; }
+.bg-orbs .orb:nth-child(3){ left: 38%; top: 28%; width:150px; height:150px; }
+.bg-orbs .orb:nth-child(4){ left: 52%; top: 70%; width:210px; height:210px; }
+
+.bg-orbs .orb:nth-child(5){ left: 66%; top: 22%; width:130px; height:130px; }
+.bg-orbs .orb:nth-child(6){ left: 78%; top: 52%; width:170px; height:170px; }
+.bg-orbs .orb:nth-child(7){ left: 90%; top: 16%; width:110px; height:110px; }
+.bg-orbs .orb:nth-child(8){ left: 12%; top: 44%; width:160px; height:160px; }
+
+.bg-orbs .orb:nth-child(9){ left: 30%; top: 10%; width:110px; height:110px; }
+.bg-orbs .orb:nth-child(10){ left: 58%; top: 40%; width:190px; height:190px; }
+.bg-orbs .orb:nth-child(11){ left: 74%; top: 78%; width:120px; height:120px; }
+.bg-orbs .orb:nth-child(12){ left: 44%; top: 54%; width:140px; height:140px; }
+
+/* ✅尊重減少動態偏好 */
+@media (prefers-reduced-motion: reduce){
+  .bg-orbs, .orb{ transition: none; }
+}
+.site-footer{
+  margin-top: 36px;
+  padding: 20px 0 28px;
+  background: linear-gradient(
+    to bottom,
+    rgba(251,251,248,0),
+    rgba(251,251,248,.92) 30%,
+    rgba(251,251,248,.96)
+  );
+  border-top: 1px solid rgba(16,17,20,.08);
+}
+
+.site-footer{
+  margin-top: 36px;
+  padding: 24px 0 32px;
+  background: #f6f7f4;
+  border-top: 1px solid rgba(16,17,20,.10);
+  position: relative;
+}
+
+/* 在 footer 上面加一層「遮罩」 */
+.site-footer::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: #f2f9e5eb;
+  z-index: -1;
+}
+/* ✅保險：讓頁面內容至少撐滿一屏，footer 會乖乖在下面 */
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+  flex: 1;
+}
+/* ✅救命：解除不能滾（避免某段把頁面鎖死） */
+html, body{
+  height: auto !important;
+  overflow-y: auto !important;
+}
+/* =========================================================
+   ✅About：分格互動（hover 一格放大，其它縮小）
+========================================================= */
+.page-head{
+  padding: 34px 0 16px;
+}
+
+.page-title{
+  font-family: var(--serif);
+  font-size: clamp(44px, 5vw, 76px);
+  line-height: 1.05;
+  margin: 0 0 10px;
+}
+
+.page-lead{
+  margin: 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* 分格容器 */
+.grid-focus{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 22px 0 56px;
+}
+
+/* 卡片 */
+.focus-card{
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(16,17,20,.10);
+  border-radius: 10px;
+  padding: 22px 22px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+  transform: translateZ(0);
+  transition: transform .22s ease, box-shadow .22s ease, opacity .22s ease, filter .22s ease;
+}
+
+/* 標題更有設計感 */
+.focus-card h2{
+  font-family: var(--serif);
+  font-size: 26px;
+  margin: 0 0 10px;
+}
+
+/* 文字舒服 */
+.focus-card p,
+.focus-card li{
+  color: rgba(16,17,20,.72);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* 列表縮排 */
+.focus-card ul{
+  margin: 0;
+  padding-left: 18px;
+}
+
+/* contact 連結 */
+.contact-list{
+  padding-left: 18px;
+}
+.contact-list a{
+  color: rgba(16,17,20,.88);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(16,17,20,.22);
+}
+.contact-list a:hover{
+  border-bottom-color: rgba(16,17,20,.60);
+}
+
+/* ✅核心互動：hover 放大、其他縮小淡掉 */
+.grid-focus:hover .focus-card{
+  transform: scale(.96);
+  opacity: .55;
+  filter: saturate(.9);
+}
+
+.grid-focus:hover .focus-card:hover{
+  transform: scale(1.03);
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 22px 60px rgba(0,0,0,.14);
+}
+
+/* ✅卡片 hover：標題更強（微放大） */
+.grid-focus:hover .focus-card:hover h2{
+  letter-spacing: .2px;
+}
+
+/* RWD：平板/手機改一欄，避免 hover 造成困擾 */
+@media (max-width: 800px){
+  .grid-focus{ grid-template-columns: 1fr; }
+}
+
+/* 手機：取消「其他縮小」效果，避免誤觸 */
+@media (max-width: 400px){
+  .grid-focus:hover .focus-card{
+    transform: none;
+    opacity: 1;
+    filter: none;
+  }
+}
+
 
